@@ -1,6 +1,6 @@
-#Heading 1
+# Heading 1
 ## Heading 2
-###### Commands
+### Commands
 Some basic Git commands are:
 ```
 git status
