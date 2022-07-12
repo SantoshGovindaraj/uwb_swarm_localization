@@ -1,4 +1,4 @@
-<!-- xml -->
+
 <launch>
 
   <arg name="robot_ns"             default="robot1"/>  <!-- create, roomba -->
@@ -12,21 +12,21 @@
     <arg name="simulation"       default="$(env TURTLEBOT_SIMULATION)"/>
     <arg name="serialport"       default="$(env TURTLEBOT_SERIAL_PORT)"/> <!-- /dev/ttyUSB0, /dev/ttyS0 -->
     <arg name="robot_name"       default="$(env ROBOT_NAME)"/>
-    <arg name="robot_type"       default="$(env ROBOT_TYPE)"/> 
+    <arg name="robot_type"       default="$(env ROBOT_TYPE)"/>
 
     <param name="/use_sim_time" value="$(arg simulation)"/>
     <param name="tf_prefix" type="string" value="$(arg robot_ns)_tf"/>
-    
+
     <!--
-      Collection of robot-centric definitions and nodes for the turtlebot. 
+      Collection of robot-centric definitions and nodes for the turtlebot.
     -->
-    <!-- important generally, but specifically utilised by the current app manager -->  
+    <!-- important generally, but specifically utilised by the current app manager -->
     <include file="$(find turtlebot_bringup)/launch/includes/description.launch.xml">
       <arg name="base" value="$(arg base)" />
       <arg name="stacks" value="$(arg stacks)" />
       <arg name="3d_sensor" value="$(arg 3d_sensor)" />
     </include>
-  
+
     <param name="robot/name" value="$(optenv ROBOT turtlebot)"/>
     <param name="robot/type" value="turtlebot"/>
 
@@ -37,25 +37,25 @@
     <node pkg="diagnostic_aggregator" type="aggregator_node" name="diagnostic_aggregator" >
       <rosparam command="load" file="$(find turtlebot_bringup)/param/$(arg base)/diagnostics.yaml" />
     </node>
-      
-      
+
+
     <!--
     Kobuki's implementation of turtlebot's mobile base.
     -->
     <node pkg="nodelet" type="nodelet" name="mobile_base_nodelet_manager" args="manager">
 
     </node>
-    
-    <node pkg="nodelet" type="nodelet" name="mobile_base" args="load kobuki_node/KobukiNodelet mobile_base_nodelet_manager">      
-      <rosparam file="$(find kobuki_node)/param/base.yaml" command="load"/>      
+
+    <node pkg="nodelet" type="nodelet" name="mobile_base" args="load kobuki_node/KobukiNodelet mobile_base_nodelet_manager">
+      <rosparam file="$(find kobuki_node)/param/base.yaml" command="load"/>
       <param name="odom_frame" type="string"  value="$(arg robot_ns)_tf/odom"/>
       <param name="base_frame" type="string"  value="$(arg robot_ns)_tf/base_footprint"/>
       <param name="device_port" value="$(arg serialport)" />
-   
+
       <remap from="mobile_base/odom" to="/$(arg robot_ns)/odom"/>
-      
-      <!-- Don't do this - force applications to use a velocity mux for redirection  
-	<remap from="mobile_base/commands/velocity" to="cmd_vel"/> 
+
+      <!-- Don't do this - force applications to use a velocity mux for redirection
+	<remap from="mobile_base/commands/velocity" to="cmd_vel"/>
       -->
       <remap from="mobile_base/enable" to="enable"/>
       <remap from="mobile_base/disable" to="disable"/>
@@ -64,11 +64,11 @@
 
     <!-- velocity commands multiplexer -->
     <node pkg="nodelet" type="nodelet" name="cmd_vel_mux" args="load yocs_cmd_vel_mux/CmdVelMuxNodelet mobile_base_nodelet_manager">
-     
+
       <param name="yaml_cfg_file" value="$(find turtlebot_bringup)/param/mux.yaml"/>
       <remap from="cmd_vel_mux/output" to="mobile_base/commands/velocity"/>
     </node>
-    
+
     <!-- bumper/cliff to pointcloud -->
 
     <include file="$(find turtlebot_bringup)/launch/includes/kobuki/bumper2pc.launch.xml"/>
@@ -78,7 +78,7 @@
     </include>
 
     <!-- ###################################
-      3D sensors 
+      3D sensors
     ############################################# -->
 
     <!-- "camera" should uniquely identify the device. All topics are pushed down
@@ -121,7 +121,7 @@
       <arg name="disparity_registered_processing" value="$(arg disparity_registered_processing)"/>
     </include>
 
-    <!--                        Laserscan 
+    <!--                        Laserscan
       This uses lazy subscribing, so will not activate until scan is requested.
     -->
     <group if="$(arg scan_processing)">
