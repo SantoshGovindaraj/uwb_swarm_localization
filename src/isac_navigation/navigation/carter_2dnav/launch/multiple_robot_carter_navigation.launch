@@ -2,9 +2,25 @@
 
   <param name="/use_sim_time" value="true"/>
 
-  <arg name="robot1" value="carter1" />
-  <arg name="robot2" value="carter2" />
-  <arg name="robot3" value="carter3" />
+  <arg name="first_tb3"  value="tb3_0"/>
+  <arg name="second_tb3" value="tb3_1"/>
+  <arg name="third_tb3"  value="tb3_2"/>
+
+  <arg name="first_tb3_x_pos" default="-7.0"/>
+  <arg name="first_tb3_y_pos" default="-1.0"/>
+  <arg name="first_tb3_z_pos" default=" 0.0"/>
+  <arg name="first_tb3_yaw"   default=" 1.57"/>
+
+  <arg name="second_tb3_x_pos" default=" 7.0"/>
+  <arg name="second_tb3_y_pos" default="-1.0"/>
+  <arg name="second_tb3_z_pos" default=" 0.0"/>
+  <arg name="second_tb3_yaw"   default=" 1.57"/>
+
+  <arg name="third_tb3_x_pos" default=" 0.5"/>
+  <arg name="third_tb3_y_pos" default=" 3.0"/>
+  <arg name="third_tb3_z_pos" default=" 0.0"/>
+  <arg name="third_tb3_yaw"   default=" 0.0"/>
+
   <arg name="env_name" default="hospital" />
 
   <!-- Load Robot Description -->
@@ -20,21 +36,21 @@
   <!-- Hospital Scenario -->
   <group if="$(eval arg('env_name') == 'hospital')" >
     <include file="$(find carter_2dnav)/launch/amcl_robot_individual.launch">
-      <arg name="robot_name"      value="$(arg robot1)" />  
-      <arg name="initial_pose_x"  value="0.0"/>
-      <arg name="initial_pose_y"  value="0.0"/>
-      <arg name="initial_pose_a"  value="3.14"/>
+      <arg name="robot_name"      value="$(arg first_tb3)" />
+      <arg name="initial_pose_x"  value="$(arg first_tb3_x_pos)"/>
+      <arg name="initial_pose_y"  value="$(arg first_tb3_y_pos)"/>
+      <arg name="initial_pose_a"  value="$(arg first_tb3_yaw)"/>
     </include>
 
     <include file="$(find carter_2dnav)/launch/amcl_robot_individual.launch">
-      <arg name="robot_name"      value="$(arg robot2)" />  
-      <arg name="initial_pose_x"  value="4.0"/>
-      <arg name="initial_pose_y"  value="-1.0"/>
-      <arg name="initial_pose_a"  value="3.14"/>
+      <arg name="robot_name"      value="$(arg second_tb3)" />
+      <arg name="initial_pose_x"  value="$(arg second_tb3_x_pos)"/>
+      <arg name="initial_pose_y"  value="$(arg second_tb3_y_pos)"/>
+      <arg name="initial_pose_a"  value="$(arg second_tb3_yaw)"/>
     </include>
-  
+
     <include file="$(find carter_2dnav)/launch/amcl_robot_individual.launch">
-      <arg name="robot_name"      value="$(arg robot3)" />  
+      <arg name="robot_name"      value="$(arg third_tb3)" />
       <arg name="initial_pose_x"  value="7.0"/>
       <arg name="initial_pose_y"  value="3.0"/>
       <arg name="initial_pose_a"  value="3.14"/>
@@ -44,21 +60,21 @@
   <!-- Office Scenario -->
   <group if="$(eval arg('env_name') == 'office')" >
     <include file="$(find carter_2dnav)/launch/amcl_robot_individual.launch">
-      <arg name="robot_name"      value="$(arg robot1)" />  
+      <arg name="robot_name"      value="$(arg robot1)" />
       <arg name="initial_pose_x"  value="-3.0"/>
       <arg name="initial_pose_y"  value="-6.0"/>
       <arg name="initial_pose_a"  value="3.14"/>
     </include>
-  
+
     <include file="$(find carter_2dnav)/launch/amcl_robot_individual.launch">
-      <arg name="robot_name"      value="$(arg robot2)" />  
+      <arg name="robot_name"      value="$(arg robot2)" />
       <arg name="initial_pose_x"  value="2.5"/>
       <arg name="initial_pose_y"  value="0.0"/>
       <arg name="initial_pose_a"  value="3.14"/>
     </include>
-  
+
     <include file="$(find carter_2dnav)/launch/amcl_robot_individual.launch">
-      <arg name="robot_name"      value="$(arg robot3)" />  
+      <arg name="robot_name"      value="$(arg robot3)" />
       <arg name="initial_pose_x"  value="-0.5"/>
       <arg name="initial_pose_y"  value="5.0"/>
       <arg name="initial_pose_a"  value="3.14"/>
@@ -69,11 +85,11 @@
   <include file="$(find carter_2dnav)/launch/move_base_individual.launch" >
     <arg name="robot_name" value="$(arg robot1)" />
   </include>
-  
+
   <include file="$(find carter_2dnav)/launch/move_base_individual.launch" >
     <arg name="robot_name" value="$(arg robot2)" />
   </include>
-  
+
   <include file="$(find carter_2dnav)/launch/move_base_individual.launch" >
     <arg name="robot_name" value="$(arg robot3)" />
   </include>
