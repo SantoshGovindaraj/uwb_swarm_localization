@@ -1,0 +1,3 @@
+[submodule "src/src/medibotv4_ros"]
+	path = src/src/medibotv4_ros
+	url = https://github.com/zulhafiz-zulkifli/medibotv4_ros
