@@ -32,12 +32,12 @@
     <param name="frame_id" value="/map" />
   </node>
 
-  <group ns="$(arg robot1)">
-    <param name="tf_prefix"   value="$(arg robot1)"/>
+  <!-- <group ns="$(arg robot1)"> -->
+    <!-- <param name="tf_prefix"   value="$(arg robot1)"/> -->
     <param name="amcl/initial_pose_x" value="$(arg first_tb3_x_pos)" />
     <param name="amcl/initial_pose_y" value="$(arg first_tb3_y_pos)" />
     <include file="$(find multibots_simulations)/launch/movebase_const.launch" />
-  </group>
+  <!-- </group> -->
 
 
 

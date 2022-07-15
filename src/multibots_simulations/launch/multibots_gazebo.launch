@@ -31,16 +31,16 @@
   <!-- Load Robot Description -->
   <param name="robot_description" command="$(find xacro)/xacro $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
 
-  <group ns= "$(arg robot1)">
+  <!-- <group ns= "$(arg robot1)"> -->
 
-    <param name="tf_prefex" value="$(arg robot1)" />
-    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model $(arg robot1) -x $(arg first_tb3_x_pos) -y $(arg first_tb3_y_pos) -z $(arg first_tb3_z_pos) -Y $(arg first_tb3_yaw) -param /robot_description" />
+    <!-- <param name="tf_prefex" value="$(arg robot1)" /> -->
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model $(arg robot1) -x $(arg first_tb3_x_pos) -y $(arg first_tb3_y_pos) -z $(arg first_tb3_z_pos) -Y $(arg first_tb3_yaw) -param robot_description" />
 
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
       <param name="publish_frequency" type="double" value="50"/>
     </node>
 
-  </group>
+  <!-- </group> -->
 
   <!-- <group ns = "$(arg robot2)">
     <param name="robot_description" command="$(find xacro)/xacro $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
