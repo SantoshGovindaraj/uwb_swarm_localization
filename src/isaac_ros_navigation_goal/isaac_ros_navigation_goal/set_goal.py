@@ -13,6 +13,12 @@ from geometry_msgs.msg import PoseWithCovarianceStamped
 class SetNavigationGoal:
     def __init__(self):
         self.__goal_generator = self.__create_goal_generator()
+        # Addign Namespaces dynamicity
+        self.robot_namespace = rospy.get_param("~robot_ns", "")
+        if self.robot_namespace != "":
+            self.robot_namespace = "/" + self.robot_namespace
+
+        # Setting for static robot Namespaces
         action_server_name = rospy.get_param("action_server_name", "move_base")
         self._action_client = actionlib.SimpleActionClient(action_server_name, MoveBaseAction)
         self.MAX_ITERATION_COUNT = rospy.get_param("iteration_count", 1)
