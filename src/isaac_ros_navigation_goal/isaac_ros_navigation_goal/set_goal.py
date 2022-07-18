@@ -19,7 +19,8 @@ class SetNavigationGoal:
             self.robot_namespace = "/" + self.robot_namespace
 
         # Setting for static robot Namespaces
-        action_server_name = rospy.get_param("action_server_name", "move_base")
+        robot1_action_server_name = rospy.get_param("robot1_action_server_name", "move_base")
+        robot2_action_server_name = rospy.get_param("robot2_action_server_name", "move_base")
         self._action_client = actionlib.SimpleActionClient(action_server_name, MoveBaseAction)
         self.MAX_ITERATION_COUNT = rospy.get_param("iteration_count", 1)
         assert self.MAX_ITERATION_COUNT > 0
