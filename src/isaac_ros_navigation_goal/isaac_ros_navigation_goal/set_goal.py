@@ -18,7 +18,7 @@ class SetNavigationGoal:
         self.MAX_ITERATION_COUNT = rospy.get_param("iteration_count", 1)
         assert self.MAX_ITERATION_COUNT > 0
         self.curr_iteration_count = 1
-        self.__initial_goal_publisher = rospy.Publisher("initialpose", PoseWithCovarianceStamped, queue_size=1)
+        self.__initial_goal_publisher = rospy.Publisher("/robot2/initialpose", PoseWithCovarianceStamped, queue_size=1)
         self.__initial_pose = rospy.get_param("initial_pose", None)
         self.__is_initial_pose_sent = True if self.__initial_pose is None else False
 
