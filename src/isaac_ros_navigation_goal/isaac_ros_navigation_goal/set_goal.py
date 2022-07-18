@@ -14,19 +14,24 @@ class SetNavigationGoal:
     def __init__(self):
         self.__goal_generator = self.__create_goal_generator()
         # Addign Namespaces dynamicity
-        self.robot_namespace = rospy.get_param("~robot_ns", "")
-        if self.robot_namespace != "":
-            self.robot_namespace = "/" + self.robot_namespace
+        self.robot_namespace = rospy.get_namespace()
+        rospy.loginfo("Robot Namespace " + self.robot_namespace)
 
         # Setting for static robot Namespaces
-        robot1_action_server_name = rospy.get_param("robot1_action_server_name", "move_base")
-        robot2_action_server_name = rospy.get_param("robot2_action_server_name", "move_base")
+        action_server_name = rospy.get_param("action_server_name", "move_base")
+        # robot2_action_server_name = rospy.get_param("robot2_action_server_name", "move_base")
         self._action_client = actionlib.SimpleActionClient(action_server_name, MoveBaseAction)
+        # self.robot2_action_client = actionlib.SimpleActionClient(robot2_action_server_name, MoveBaseAction)
+
         self.MAX_ITERATION_COUNT = rospy.get_param("iteration_count", 1)
         assert self.MAX_ITERATION_COUNT > 0
         self.curr_iteration_count = 1
-        self.__initial_goal_publisher = rospy.Publisher("/robot2/initialpose", PoseWithCovarianceStamped, queue_size=1)
+        self.__initial_goal_publisher = rospy.Publisher("/initialpose", PoseWithCovarianceStamped, queue_size=1)
+        # self._robot2_initial_goal_publisher = rospy.Publisher("/robot1/initialpose", PoseWithCovarianceStamped, queue_size=1)
+
         self.__initial_pose = rospy.get_param("initial_pose", None)
+        # self._robot2_initial_pose = rospy.get_param("robot2_initial_pose", None)
+
         self.__is_initial_pose_sent = True if self.__initial_pose is None else False
 
     def __send_initial_pose(self):
@@ -141,12 +146,20 @@ class SetNavigationGoal:
             goal_generator = RandomGoalGenerator(grid_map, obstacle_search_distance_in_meters)
 
         elif goal_generator_type == "GoalReader":
-            if rospy.get_param("goal_text_file_path", None) is None:
-                rospy.loginfo("Goal text file path is not given. Returning..")
-                sys.exit(1)
+            if self.robot_namespace == "/robot1":
+                if rospy.get_param("robot1_goal_text_file_path", None) is None:
+                    rospy.loginfo("Goal for robot1 text file path is not given. Returning..")
+                    sys.exit(1)
 
-            file_path = rospy.get_param("goal_text_file_path", None)
-            goal_generator = GoalReader(file_path)
+                file_path = rospy.get_param("robot1_goal_text_file_path", None)
+                goal_generator = GoalReader(file_path)
+            else:
+                if rospy.get_param("robot2_goal_text_file_path", None) is None:
+                    rospy.loginfo("Goal for robot2 text file path is not given. Returning..")
+                    sys.exit(1)
+
+                file_path = rospy.get_param("robot2_goal_text_file_path", None)
+                goal_generator = GoalReader(file_path)
         else:
             rospy.loginfo("Invalid goal generator specified. Returning...")
             sys.exit(1)

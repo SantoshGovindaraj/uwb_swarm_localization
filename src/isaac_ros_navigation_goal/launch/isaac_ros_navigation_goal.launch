@@ -5,15 +5,16 @@
     <param name="obstacle_search_distance_in_meters" type="double" value="0.2" />
 
     <!-- Robot 1 -->
-    <param name="robot1_action_server_name" type="str" value="/robot1/move_base" />
+    <param name="action_server_name" type="str" value="/move_base" />
     <param name="robot1_goal_text_file_path" value="$(find isaac_ros_navigation_goal)/assets/robot1_goals.txt" />
-    <rosparam param="robot1_initial_pose">[6.8, -1.26, 0, 0, 0, 0.70, 0.70] </rosparam>
+    <param name="robot2_goal_text_file_path" value="$(find isaac_ros_navigation_goal)/assets/robot2_goals.txt" />
+    <rosparam param="initial_pose">[6.8, -1.26, 0, 0, 0, 0.70, 0.70] </rosparam>
 
     <!-- Robot 2 -->
-    <param name="robot2_action_server_name" type="str" value="/robot2/move_base" />
+    <!-- <param name="robot2_action_server_name" type="str" value="/robot2/move_base" />
     <param name="robot2_goal_text_file_path" value="$(find isaac_ros_navigation_goal)/assets/robot2_goals.txt" />
-    <rosparam param="robot2_initial_pose">[6.8, -1.26, 0, 0, 0, 0.70, 0.70] </rosparam>
-      
+    <rosparam param="robot2_initial_pose">[6.8, -1.26, 0, 0, 0, 0.70, 0.70] </rosparam> -->
+
 
     <node name="set_navigation_goal" pkg="isaac_ros_navigation_goal" type="set_goal.py" output="screen"/>
 </launch>
