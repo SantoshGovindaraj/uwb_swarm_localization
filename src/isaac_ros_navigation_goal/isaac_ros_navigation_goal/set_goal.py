@@ -12,10 +12,10 @@ from geometry_msgs.msg import PoseWithCovarianceStamped
 
 class SetNavigationGoal:
     def __init__(self):
-        self.__goal_generator = self.__create_goal_generator()
         # Addign Namespaces dynamicity
         self.robot_namespace = rospy.get_namespace()
         rospy.loginfo("Robot Namespace " + self.robot_namespace)
+        self.__goal_generator = self.__create_goal_generator()
 
         # Setting for static robot Namespaces
         action_server_name = rospy.get_param("action_server_name", "move_base")
