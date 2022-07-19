@@ -16,10 +16,15 @@ class SetNavigationGoal:
         self.robot_namespace = rospy.get_namespace()
         rospy.loginfo("Robot Namespace " + self.robot_namespace)
         self.__goal_generator = self.__create_goal_generator()
-
-        # Setting for static robot Namespaces
         action_server_name = rospy.get_param("action_server_name", "move_base")
-        # robot2_action_server_name = rospy.get_param("robot2_action_server_name", "move_base")
+
+        # Setting for dynamic robot Namespaces
+        if self.robot_namespace == "/robot1/":
+            action_server_name = "/robot1" + action_server_name
+        else:
+            action_server_name = "/robot2" + action_server_name
+
+        rospy.loginfo(action_server_name)
         self._action_client = actionlib.SimpleActionClient(action_server_name, MoveBaseAction)
         # self.robot2_action_client = actionlib.SimpleActionClient(robot2_action_server_name, MoveBaseAction)
 
@@ -146,7 +151,7 @@ class SetNavigationGoal:
             goal_generator = RandomGoalGenerator(grid_map, obstacle_search_distance_in_meters)
 
         elif goal_generator_type == "GoalReader":
-            if self.robot_namespace == "/robot1":
+            if self.robot_namespace == "/robot1/":
                 if rospy.get_param("robot1_goal_text_file_path", None) is None:
                     rospy.loginfo("Goal for robot1 text file path is not given. Returning..")
                     sys.exit(1)
