@@ -8,8 +8,12 @@ project(tb3_swarm)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  actionlib
+  geometry_msgs
+  move_base_msgs
   roscpp
   rospy
+  std_msgs
 )
 
 ## System dependencies are found with CMake's conventions
