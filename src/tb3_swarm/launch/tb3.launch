@@ -3,7 +3,7 @@
 
   <!-- Drivers -->
   <include file="$(find tb3_swarm)/launch/base/tb3_bringup.launch">
-    <arg name="multi_robot_name"  value="$(arg robot_ns)"/>
+    <arg name="robot_ns"  value="$(arg robot_ns)"/>
   </include>
 
   <include file="$(find tb3_swarm)/launch/base/tb3_remote.launch">
