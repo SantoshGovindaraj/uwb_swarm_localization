@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <include file="$(find tb3_swarm_simulation)/launch/gazebo/tb3_swarm_gazebo.launch"/>
+
+  <include file="$(find tb3_swarm_simulation)/launch/navigation/tb3_swarm_nav.launch"/>
+
+  <!-- Other Finctionalities like rosbridge server -->
+
+  <!-- Also like task assginment -->
+
+</launch>
