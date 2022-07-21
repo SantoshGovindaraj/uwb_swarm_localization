@@ -8,8 +8,8 @@
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
 
     <!-- COSTMAP PARAMETERS -->
-    <rosparam file="$(find tb3_swarm)/config/navigation/costmap_common_params.yaml" command="load" ns="global_costmap"/>
-    <rosparam file="$(find tb3_swarm)/config/navigation/costmap_common_params.yaml" command="load" ns="local_costmap"/>
+    <rosparam file="$(find tb3_swarm)/config/navigation/costmap_common_params_waffle.yaml" command="load" ns="global_costmap"/>
+    <rosparam file="$(find tb3_swarm)/config/navigation/costmap_common_params_waffle.yaml" command="load" ns="local_costmap"/>
     <rosparam file="$(find tb3_swarm)/config/navigation/local_costmap_params.yaml" command="load" />
     <rosparam file="$(find tb3_swarm)/config/navigation/global_costmap_params.yaml" command="load" />
 
@@ -22,7 +22,7 @@
 
     <!-- DWA LOCAL PLANNER PARAMETERS -->
     <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
-    <rosparam file="$(find tb3_swarm)/config/navigation/dwa_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find tb3_swarm)/config/navigation/dwa_local_planner_params_waffle.yaml" command="load" />
 
     <!-- <rosparam file="$(find tb3_swarm_simulation)/param/base_local_planner_params.yaml" command="load" /> -->
 
