@@ -8,7 +8,9 @@
   <param name="robot_description" command="$(find xacro)/xacro $(find turtlebot3_description)/urdf/turtlebot3_waffle.urdf.xacro" />
 
   <!-- Run the map server -->
-  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)">
+    <param name="frame_id" value="/map" />
+  </node>
 
   <group ns="$(arg first_robot)">
     <!--robot_state_publisher, publishing state of robot to tf-->
