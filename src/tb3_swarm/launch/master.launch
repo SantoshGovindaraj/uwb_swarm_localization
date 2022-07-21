@@ -1,0 +1,24 @@
+<launch>
+  <arg name="map_name"  default="map_gf"/>
+  <arg name="map_file"  default="$(find tb3_swarm)/maps/$(arg map_name).yaml"/>
+  <arg name="open_rviz" default="true"/>
+  <arg name="robot1_ns" default="robot1"/>
+  <arg name="robot2_ns" default="robot2"/>
+
+  <!-- Run the map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find map_file)">
+    <param name="frame_id"  value="/map"/>
+  </node>
+
+  <!-- Rviz -->
+  <group if="$(arg open_rviz)">
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+        args="-d $(find tb3_swarm)/rviz/navigation/multirobot_navigation.rviz"/>
+  </group>
+
+  <!-- Other Functionalities -->
+
+  <!-- Like Task Assignment -->
+
+  
+</launch>

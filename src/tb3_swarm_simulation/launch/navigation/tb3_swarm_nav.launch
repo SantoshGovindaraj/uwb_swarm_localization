@@ -4,11 +4,13 @@
   <arg name="second_robot" default="robot2"/>
   <arg name="open_rviz"    default="true"/>
   <arg name="move_forward_only" default="false"/>
-  <arg name="map_file" default="$(find tb3_swarm_simulation)/maps/map.yaml"/>
+  <arg name="map_file" default="$(find tb3_swarm_simulation)/maps/map_gf.yaml"/>
   <param name="robot_description" command="$(find xacro)/xacro $(find turtlebot3_description)/urdf/turtlebot3_waffle.urdf.xacro" />
 
   <!-- Run the map server -->
-  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)">
+    <param name="frame_id" value="/map" />
+  </node>
 
   <group ns="$(arg first_robot)">
     <!--robot_state_publisher, publishing state of robot to tf-->
