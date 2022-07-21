@@ -1,0 +1,8 @@
+<launch>
+<arg name="robot_ns"  default="$(env ROS_NAMESPACE)" doc="robot_ns type [robot1, robot2]"/>
+
+<include file="$(find turtlebot3_bringup)/launch/turtlebot3_robot.launch">
+  <arg name="multi_robot_name"  value="arg robot_ns"/>
+</include>
+
+</launch>
