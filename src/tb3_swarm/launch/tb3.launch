@@ -25,7 +25,7 @@
     <arg name="robot_namespace" value="$(arg robot_ns)"/>
   </include>
 
-  <node pkg="robot_pose_publisher"  type="robot_pose_publisher" name="robot_pose_publisher">
+  <node pkg="tb3_swarm"  type="robot_pose_publisher" name="robot_pose_publisher">
     <param name="base_frame"  value="$(arg robot_ns)/base_link"/>
   </node>
 
