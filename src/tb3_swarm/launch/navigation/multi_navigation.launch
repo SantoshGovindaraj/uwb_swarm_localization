@@ -12,7 +12,7 @@
     <param name="frame_id" value="/map" />
   </node>
 
-  <group ns="$(arg first_robot)">
+  <group ns="$(arg second_robot)">
     <!--robot_state_publisher, publishing state of robot to tf-->
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
       <param name="publish_frequency" type="double" value="50.0" />
