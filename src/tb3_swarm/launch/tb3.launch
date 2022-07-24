@@ -18,17 +18,17 @@
   <!-- <include file="$(find tb3_swarm)/launch/base/tb3_ekf_localization.launch"/> -->
 
   <!-- AMCL -->
-  <!-- <include file="$(find tb3_swarm)/launch/navigation/multi_amcl.launch">
+  <include file="$(find tb3_swarm)/launch/navigation/multi_amcl.launch">
     <arg name="robot_namespace" value="$(arg robot_ns)"/>
     <arg name="initial_pose_x"  value="0.0"/>
     <arg name="initial_pose_y"  value="0.0"/>
     <arg name="initial_pose_a"  value="0.0"/>
-  </include> -->
+  </include>
 
   <!-- Move Base -->
-  <!-- <include file="$(find tb3_swarm)/launch/navigation/multi_move_base.launch">
+  <include file="$(find tb3_swarm)/launch/navigation/multi_move_base.launch">
     <arg name="robot_namespace" value="$(arg robot_ns)"/>
-  </include> -->
+  </include>
 
   <node pkg="robot_pose_publisher"  type="robot_pose_publisher" name="robot_pose_publisher">
     <param name="base_frame"  value="$(arg robot_ns)/base_link"/>
