@@ -2,9 +2,9 @@
   <!-- <arg name="map_name"  default="map_gf1"/>
   <arg name="map_file"  default="$(find tb3_swarm)/maps/$(arg map_name).yaml"/>   -->
   <arg name="robot_ns"  default="$(env ROS_NAMESPACE)" doc="robot_ns type [robot1, robot2]"/>
-  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)">
+  <!-- <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)">
     <param name="frame_id"  value="/map"/>
-  </node>
+  </node> -->
   <param name="robot_description" command="$(find xacro)/xacro $(find turtlebot3_description)/urdf/turtlebot3_waffle.urdf.xacro" />
 
   <!-- Drivers -->
