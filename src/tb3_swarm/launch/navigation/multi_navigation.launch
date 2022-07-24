@@ -4,7 +4,7 @@
   <arg name="second_robot" default="robot2"/>
   <arg name="open_rviz"    default="true"/>
   <arg name="move_forward_only" default="false"/>
-  <arg name="map_file" default="$(find tb3_swarm)/maps/map_gf.yaml"/>
+  <arg name="map_file" default="$(find tb3_swarm)/maps/map_gf1.yaml"/>
   <param name="robot_description" command="$(find xacro)/xacro $(find turtlebot3_description)/urdf/turtlebot3_waffle.urdf.xacro" />
 
   <!-- Run the map server -->
@@ -12,32 +12,32 @@
     <param name="frame_id" value="/map" />
   </node>
 
-  <!-- <group ns="$(arg first_robot)"> -->
+  <group ns="$(arg first_robot)">
     <!--robot_state_publisher, publishing state of robot to tf-->
-    <!-- <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
       <param name="publish_frequency" type="double" value="50.0" />
       <param name="tf_prefix" value="$(arg first_robot)" />
-    </node> -->
+    </node>
 
     <!--AMCL-->
-    <!-- <include file="$(find tb3_swarm)/launch/navigation/multi_amcl.launch">
+    <include file="$(find tb3_swarm)/launch/navigation/multi_amcl.launch">
       <arg name="robot_namespace" value="$(arg first_robot)"/>
       <arg name="initial_pose_x" value="0.0"/>
       <arg name="initial_pose_y" value="0.0"/>
       <arg name="initial_pose_a" value="1.57"/>
-    </include> -->
+    </include>
 
     <!--move_base-->
-    <!-- <include file="$(find tb3_swarm)/launch/navigation/multi_move_base.launch">
+    <include file="$(find tb3_swarm)/launch/navigation/multi_move_base.launch">
       <arg name="robot_namespace" value="$(arg first_robot)"/>
       <arg name="move_forward_only" value="$(arg move_forward_only)"/>
-    </include> -->
+    </include>
 
-    <!-- <node pkg="robot_pose_publisher" type="robot_pose_publisher" name="robot_pose_publisher">
+    <node pkg="robot_pose_publisher" type="robot_pose_publisher" name="robot_pose_publisher">
       <param name="base_frame" value="$(arg first_robot)/base_link"/>
-    </node> -->
+    </node>
 
-  <!-- </group> -->
+  </group>
 
   <group if="$(arg open_rviz)">
     <node pkg="rviz" type="rviz" name="rviz" required="true"
