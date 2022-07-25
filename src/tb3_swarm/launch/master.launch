@@ -1,15 +1,15 @@
 <launch>
-  <arg name="map_name"  default="map_gf1"/>
+  <arg name="map_name"  default="map_room"/>
   <arg name="map_file"  default="$(find tb3_swarm)/maps/$(arg map_name).yaml"/>
   <arg name="open_rviz" default="true"/>
   <arg name="robot1_ns" default="robot1"/>
   <arg name="robot2_ns" default="robot2"/>
-  <arg name="nav_type"  default="multirobot"/>
+  <arg name="nav_type"  default="singlerobot"/>
 
   <!-- Run the map server -->
-  <!-- <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)">
-    <param name="frame_id"  value="/map"/>
-  </node> -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)">
+    <!-- <param name="frame_id"  value="/map"/> -->
+  </node>
 
   <!-- Rviz -->
   <group if="$(arg open_rviz)">
