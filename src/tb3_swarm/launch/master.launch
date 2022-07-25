@@ -6,8 +6,8 @@
   <arg name="robot2_ns" default="robot2"/>
 
   <!-- Run the map server -->
-  <node name="map_server" pkg="map_server" type="map_server" args="$(find map_file)">
-    <param name="frame_id"  value="/map"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)">
+    <!-- <param name="frame_id"  value="/map"/> -->
   </node>
 
   <!-- Rviz -->
@@ -20,5 +20,5 @@
 
   <!-- Like Task Assignment -->
 
-  
+
 </launch>
