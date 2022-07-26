@@ -137,7 +137,7 @@ class SetNavigationGoal:
         pass
 
     def __create_goal_generator(self):
-        goal_generator_type = rospy.get_param("goal_generator_type", "RandomGoalGenerator")
+        goal_generator_type = rospy.get_param("goal_generator_type", "GoalReader")
         goal_generator = None
         if goal_generator_type == "RandomGoalGenerator":
             if rospy.get_param("map_yaml_path", None) is None:
