@@ -29,6 +29,7 @@ class SetNavigationGoal:
         # self.robot2_action_client = actionlib.SimpleActionClient(robot2_action_server_name, MoveBaseAction)
 
         self.MAX_ITERATION_COUNT = rospy.get_param("iteration_count", 1)
+        rospy.loginfo(str(self.MAX_ITERATION_COUNT)+" Iteration Count Recieved")
         assert self.MAX_ITERATION_COUNT > 0
         self.curr_iteration_count = 1
         self.__initial_goal_publisher = rospy.Publisher(self.robot_namespace + "/initialpose", PoseWithCovarianceStamped, queue_size=1)
