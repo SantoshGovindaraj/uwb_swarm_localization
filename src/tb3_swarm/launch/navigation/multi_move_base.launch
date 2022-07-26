@@ -2,7 +2,7 @@
   <!-- Launch file for move_base to run for one of multiple turtlebot3's -->
 
   <!-- Namespace and tf_prefix are assumed to be the same -->
-  <arg name="robot_namespace" default="robot1"/>
+  <arg name="robot_namespace"/>
   <arg name="move_forward_only" default="false"/>
 
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
