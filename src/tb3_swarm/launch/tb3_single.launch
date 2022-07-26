@@ -3,6 +3,7 @@
 
   <include file="$(find turtlebot3_bringup)/launch/turtlebot3_robot.launch">
     <arg name="multi_robot_name"  value="robot1"/>
+    <arg name="set_lidar_frame_id"  value="robot1/base_scan"/>
   </include>
 
   <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch">
