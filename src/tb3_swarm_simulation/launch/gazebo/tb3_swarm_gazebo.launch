@@ -13,7 +13,6 @@
   <arg name="second_robot_yaw"   default="1.57"/>
 
   <arg name="map_file" default="$(find tb3_swarm_simulation)/maps/map.yaml"/>
-  
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
       <arg name="world_name" value="$(find tb3_swarm_simulation)/worlds/turtlebot3_house.world"/>
