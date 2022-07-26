@@ -13,9 +13,9 @@
     <rosparam file="$(find tb3_swarm_simulation)/multirobot_param/local_costmap_params.yaml" command="load" />
     <rosparam file="$(find tb3_swarm_simulation)/multirobot_param/global_costmap_params.yaml" command="load" />
     <rosparam file="$(find tb3_swarm_simulation)/multirobot_param/move_base_params.yaml" command="load" />
-    <rosparam file="$(find tb3_swarm_simulation)/multirobot_param/teb_local_planner_params.yaml" command="load" />
+    <!-- <rosparam file="$(find tb3_swarm_simulation)/multirobot_param/teb_local_planner_params.yaml" command="load" /> -->
     <!-- <rosparam file="$(find tb3_swarm_simulation)/param/base_local_planner_params.yaml" command="load" /> -->
-    <!-- <rosparam file="$(find tb3_swarm_simulation)/param/dwa_local_planner_params.yaml" command="load" /> -->
+    <rosparam file="$(find tb3_swarm_simulation)/param/dwa_local_planner_params.yaml" command="load" />
 
     <!-- Set tf_prefix for frames explicity, overwriting defaults -->
     <param name="global_costmap/scan/sensor_frame"                  value="$(arg robot_namespace)/lidar"/>
