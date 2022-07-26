@@ -19,12 +19,34 @@
       <arg name="robot_namespace" value="$(arg first_robot)"/>
       <arg name="initial_pose_x" value="0.0"/>
       <arg name="initial_pose_y" value="0.0"/>
-      <arg name="initial_pose_a" value="1.57"/>
+      <arg name="initial_pose_a" value="0.0"/>
     </include>
 
     <!--move_base-->
     <include file="$(find tb3_swarm)/launch/navigation/multi_move_base.launch">
       <arg name="robot_namespace" value="$(arg first_robot)"/>
+      <arg name="move_forward_only" value="$(arg move_forward_only)"/>
+    </include>
+
+    <!-- <node pkg="robot_pose_publisher" type="robot_pose_publisher" name="robot_pose_publisher">
+      <param name="base_frame" value="$(arg second_robot)/base_link"/>
+    </node> -->
+
+  </group>
+
+  <group ns="$(arg second_robot)">
+
+    <!--AMCL-->
+    <include file="$(find tb3_swarm)/launch/navigation/multi_amcl.launch">
+      <arg name="robot_namespace" value="$(arg second_robot)"/>
+      <arg name="initial_pose_x" value="2.20"/>
+      <arg name="initial_pose_y" value="3.80"/>
+      <arg name="initial_pose_a" value="-1.57"/>
+    </include>
+
+    <!--move_base-->
+    <include file="$(find tb3_swarm)/launch/navigation/multi_move_base.launch">
+      <arg name="robot_namespace" value="$(arg second_robot)"/>
       <arg name="move_forward_only" value="$(arg move_forward_only)"/>
     </include>
 
