@@ -1,11 +1,11 @@
 <launch>
-  <arg name="robot_namespace"/>
+  <arg name="robot_namespace" default="robot1"/>
   <arg name="scan_topic"     default="scan"/>
   <arg name="initial_pose_x" default="0.0"/>
   <arg name="initial_pose_y" default="0.0"/>
   <arg name="initial_pose_a" default="0.0"/>
 
-  <node pkg="amcl" type="amcl" name="amcl">
+  <node pkg="amcl" type="amcl" name="multi_amcl">
 
     <rosparam file="$(find tb3_swarm)/config/param/amcl_params.yaml" command="load" />
 
