@@ -4,7 +4,7 @@
   <arg name="open_rviz" default="true"/>
   <arg name="robot1_ns" default="robot1"/>
   <arg name="robot2_ns" default="robot2"/>
-  <arg name="nav_type"  default="singlerobot"/>
+  <arg name="nav_type"  default="multirobot"/>
 
   <!-- Run the map server -->
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)">
