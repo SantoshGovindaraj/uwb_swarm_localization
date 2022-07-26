@@ -12,10 +12,10 @@
   </node>
 
   <!-- Rviz -->
-  <group if="$(arg open_rviz)">
+  <!-- <group if="$(arg open_rviz)">
     <node pkg="rviz" type="rviz" name="rviz" required="true"
         args="-d $(find tb3_swarm)/rviz/navigation/$(arg nav_type)_navigation.rviz"/>
-  </group>
+  </group> -->
 
 
   <!-- Other Functionalities -->
