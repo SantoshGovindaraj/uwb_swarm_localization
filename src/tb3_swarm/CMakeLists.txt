@@ -14,6 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  tf
 )
 
 ## System dependencies are found with CMake's conventions
@@ -138,8 +139,11 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/tb3_swarm_node.cpp)
 
-# add_executable(robot_pose_publisher src/base/robot_pose_publisher.cpp)
-# target_link_libraries(robot_pose_publisher ${catkin_LIBRARIES})
+add_executable(print_position_multi src/queuing/print_position_multi.cpp)
+add_executable(follower_multi src/queuing/follower_multi.cpp)
+
+target_link_libraries(print_position_multi ${catkin_LIBRARIES})
+target_link_libraries(follower_multi ${catkin_LIBRARIES})
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
