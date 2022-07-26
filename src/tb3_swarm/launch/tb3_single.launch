@@ -1,5 +1,5 @@
 <launch>
-  <arg name="map_file" default="$(find tb3_swarm)/maps/map_room.yaml"/>
+  <arg name="map_file" default="$(find tb3_swarm)/maps/map_gf1.yaml"/>
 
   <include file="$(find turtlebot3_bringup)/launch/turtlebot3_robot.launch">
     <arg name="multi_robot_name"  value="robot1"/>
