@@ -5,18 +5,18 @@
     <param name="obstacle_search_distance_in_meters" type="double" value="0.2" />
 
     <!-- Robot 1 -->
-    <!-- <group ns="robot1">
+    <group ns="robot1">
       <param name="action_server_name" type="str" value="/move_base" />
-      <param name="goal_text_file_path" value="$(find tb3_swarm)/config/robot1_goals.txt" />
+      <param name="goal_text_file_path" value="$(find tb3_swarm)/config/multirobot_navigation/robot1_goals.txt" />
 
       <rosparam param="initial_pose">[0.0, 0.0, 0, 0, 0, 0.0, 0.0] </rosparam>
       <node name="set_navigation_goal" pkg="tb3_swarm" type="set_goal.py" output="screen"/>
-    </group> -->
+    </group>
 
     <!-- Robot 2 -->
     <group ns="robot2">
       <param name="action_server_name" type="str" value="/robot2/move_base" />
-      <param name="goal_text_file_path" value="$(find tb3_swarm)/config/robot2_goals.txt" />
+      <param name="goal_text_file_path" value="$(find tb3_swarm)/config/multirobot_navigation/robot2_goals.txt" />
       <rosparam param="initial_pose">[2.2, 3.80, 0, 0, 0, 0.70, 0.70] </rosparam>
       <node name="set_navigation_goal" pkg="tb3_swarm" type="set_goal.py" output="screen"/>
     </group>
