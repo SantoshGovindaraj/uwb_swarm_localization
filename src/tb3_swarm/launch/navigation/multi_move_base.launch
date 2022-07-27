@@ -8,22 +8,28 @@
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
 
     <!-- COSTMAP PARAMETERS -->
-    <rosparam file="$(find tb3_swarm)/config/navigation/costmap_common_params_waffle.yaml" command="load" ns="global_costmap"/>
-    <rosparam file="$(find tb3_swarm)/config/navigation/costmap_common_params_waffle.yaml" command="load" ns="local_costmap"/>
-    <rosparam file="$(find tb3_swarm)/config/navigation/local_costmap_params.yaml" command="load" />
-    <rosparam file="$(find tb3_swarm)/config/navigation/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find tb3_swarm)/config/default_nav/costmap_common_params_waffle.yaml" command="load" ns="global_costmap"/>
+    <rosparam file="$(find tb3_swarm)/config/default_nav/costmap_common_params_waffle.yaml" command="load" ns="local_costmap"/>
+    <rosparam file="$(find tb3_swarm)/config/default_nav/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find tb3_swarm)/config/default_nav/global_costmap_params.yaml" command="load" />
 
     <!-- GLOBAL PLANNER PARAMETERS -->
-    <rosparam file="$(find tb3_swarm)/config/navigation/move_base_params.yaml" command="load" />
+    <!-- <rosparam file="$(find tb3_swarm)/config/default_nav/move_base_params.yaml" command="load" /> -->
+    <param name="base_global_planner" value="global_planner/GlobalPlanner" />
+		<param name="planner_frequency" value="1.0" />
+		<param name="planner_patience" value="5.0" />
 
     <!-- TEB LOCAL PLANNER PARAMETERS -->
-    <!-- <rosparam file="$(find tb3_swarm)/config/navigation/teb_local_planner_params.yaml" command="load" /> -->
+    <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
+    <rosparam file="$(find tb3_swarm)/config/default_nav/teb_local_planner_params.yaml" command="load" />
+    <param name="controller_frequency" value="5.0" />
+		<param name="controller_patience" value="15.0" />
 
 
     <!-- DWA LOCAL PLANNER PARAMETERS -->
-    <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
-    <rosparam file="$(find tb3_swarm)/config/navigation/dwa_local_planner_params_waffle.yaml" command="load" />
-    <param name="DWAPlannerROS/min_vel_x" value="0.0" if="$(arg move_forward_only)" />
+    <!-- <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+    <rosparam file="$(find tb3_swarm)/config/default_nav/dwa_local_planner_params_waffle.yaml" command="load" />
+    <param name="DWAPlannerROS/min_vel_x" value="0.0" if="$(arg move_forward_only)" /> -->
 
     <!-- <rosparam file="$(find tb3_swarm_simulation)/param/base_local_planner_params.yaml" command="load" /> -->
 
@@ -40,6 +46,7 @@
 
     <!-- Centralized map server -->
     <remap from="map" to="/map"/>
+
   </node>
 
 </launch>
