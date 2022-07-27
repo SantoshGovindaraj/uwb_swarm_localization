@@ -3,7 +3,7 @@
   <arg name="first_robot"  default="robot1"/>
   <arg name="second_robot" default="robot2"/>
   <arg name="open_rviz"    default="false"/>
-  <arg name="move_forward_only" default="false"/>
+  <arg name="move_forward_only" default="true"/>
   <!-- <arg name="map_file" default="$(find tb3_swarm)/maps/map_room.yaml"/> -->
   <!-- <param name="robot_description" command="$(find xacro)/xacro $(find turtlebot3_description)/urdf/turtlebot3_waffle.urdf.xacro" /> -->
 
@@ -39,8 +39,11 @@
     <!--AMCL-->
     <include file="$(find tb3_swarm)/launch/navigation/multi_amcl.launch">
       <arg name="robot_namespace" value="$(arg second_robot)"/>
-      <arg name="initial_pose_x" value="2.20"/>
-      <arg name="initial_pose_y" value="3.80"/>
+      <!-- <arg name="initial_pose_x" value="2.05"/>
+      <arg name="initial_pose_y" value="3.55"/>
+      <arg name="initial_pose_a" value="-1.57"/> -->
+      <arg name="initial_pose_x" value="-0.35"/>
+      <arg name="initial_pose_y" value="0.3"/>
       <arg name="initial_pose_a" value="-1.57"/>
     </include>
 

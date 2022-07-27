@@ -46,8 +46,8 @@
     <!--AMCL-->
     <include file="$(find tb3_swarm_simulation)/launch/navigation/multi_amcl.launch">
       <arg name="robot_namespace" value="$(arg second_robot)"/>
-      <arg name="initial_pose_x" value="-7.0"/>
-      <arg name="initial_pose_y" value="-2.0"/>
+      <arg name="initial_pose_x" value="7.0"/>
+      <arg name="initial_pose_y" value="-1.0"/>
       <arg name="initial_pose_a" value="1.57"/>
     </include>
 
