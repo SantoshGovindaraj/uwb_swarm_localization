@@ -7,7 +7,7 @@
   <arg name="map_file" default="$(find tb3_swarm_simulation)/maps/map.yaml"/>
   <param name="robot_description" command="$(find xacro)/xacro $(find turtlebot3_description)/urdf/turtlebot3_waffle.urdf.xacro" />
 
-  
+
 
   <group ns="$(arg first_robot)">
     <!--robot_state_publisher, publishing state of robot to tf-->

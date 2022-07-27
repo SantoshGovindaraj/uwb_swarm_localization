@@ -7,8 +7,13 @@
   <arg name="first_robot_z_pos" default=" 0.0"/>
   <arg name="first_robot_yaw"   default="1.57"/>
 
-  <arg name="second_robot_x_pos" default="7.0"/>
+  <!-- <arg name="second_robot_x_pos" default="7.0"/>
   <arg name="second_robot_y_pos" default="-1.0"/>
+  <arg name="second_robot_z_pos" default="0.0"/>
+  <arg name="second_robot_yaw"   default="1.57"/> -->
+
+  <arg name="second_robot_x_pos" default="-7.0"/>
+  <arg name="second_robot_y_pos" default="-2.0"/>
   <arg name="second_robot_z_pos" default="0.0"/>
   <arg name="second_robot_yaw"   default="1.57"/>
 

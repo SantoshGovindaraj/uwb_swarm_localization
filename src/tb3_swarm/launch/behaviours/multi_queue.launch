@@ -1,0 +1,21 @@
+<launch>
+  <!-- <master auto="start"/> -->
+  <!-- https://github.com/kamoonty/multi_navigation_tb3/blob/master/launch/multi_tb3_ns_leader_follower.launch -->
+
+<!-- LEADER Turtlebot 1  -->
+  <group ns="robot1">
+    <!--Get position-->
+    <node pkg="tb3_swarm" type="print_position_multi" name="print_position_multi" output="screen" />
+
+  </group>
+
+
+
+<!-- FOLLOWER Turtlebot 2 -->
+  <group ns="robot2">
+    <param name="tf_prefix" value="robot2"/>
+    <!-- Follower -->
+    <node pkg="tb3_swarm" type="follower_multi" name="follower_multi" args="1" output="screen" />
+  </group>
+
+</launch>

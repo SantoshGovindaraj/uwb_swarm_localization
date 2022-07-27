@@ -32,11 +32,11 @@ class SetNavigationGoal:
         rospy.loginfo(str(self.MAX_ITERATION_COUNT)+" Iteration Count Recieved")
         assert self.MAX_ITERATION_COUNT > 0
         self.curr_iteration_count = 1
-        self.__initial_goal_publisher = rospy.Publisher(self.robot_namespace + "/initialpose", PoseWithCovarianceStamped, queue_size=1)
+        self.__initial_goal_publisher = rospy.Publisher(self.robot_namespace + "initialpose", PoseWithCovarianceStamped, queue_size=1)
         # self._robot2_initial_goal_publisher = rospy.Publisher("/robot1/initialpose", PoseWithCovarianceStamped, queue_size=1)
 
         self.__initial_pose = rospy.get_param(self.robot_namespace+"initial_pose", None)
-        # self._robot2_initial_pose = rospy.get_param("robot2_initial_pose", None)
+        rospy.loginfo("Initial Pose: " + str(self.__initial_pose) + " --> " + self.robot_namespace+"initialpose")
 
         self.__is_initial_pose_sent = True if self.__initial_pose is None else False
 
@@ -47,7 +47,7 @@ class SetNavigationGoal:
         to the mission server.
         """
         goal = PoseWithCovarianceStamped()
-        goal.header.frame_id = rospy.get_param("frame_id", "map")
+        goal.header.frame_id = rospy.get_param("map_server/frame_id", "map")
         goal.header.stamp = rospy.get_rostime()
         goal.pose.pose.position.x = self.__initial_pose[0]
         goal.pose.pose.position.y = self.__initial_pose[1]

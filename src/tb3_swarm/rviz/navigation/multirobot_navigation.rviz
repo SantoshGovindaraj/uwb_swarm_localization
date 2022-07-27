@@ -19,7 +19,7 @@ Panels:
         - /robot1 trajectory1
         - /robot2 trajectory1
       Splitter Ratio: 0.5
-    Tree Height: 726
+    Tree Height: 777
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -39,7 +39,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: LaserScan
+    SyncSource: ""
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -75,122 +75,53 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        base_footprint:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         base_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        body:
+        base_scan:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bottom_panel:
+        camera_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        camera:
+        camera_rgb_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_rgb_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        caster_back_left_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        camera_housing:
+        caster_back_right_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        caster:
+        imu_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        wheel_left_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        circuit_housing:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        circuit_panel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        left_motor:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        left_realsense:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        left_wheel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        lidar:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        monitor:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        mount:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        pan_servo:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        pan_tilt_mount:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        realsense_housing:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        right_motor:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        right_realsense:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        right_wheel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        sonar:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        stand:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        tilt_servo:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        top_panel:
+        wheel_right_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -211,126 +142,6 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        body:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        bottom_panel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        camera:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        camera_housing:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        caster:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        circuit_housing:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        circuit_panel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        left_motor:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        left_realsense:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        left_wheel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        lidar:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        monitor:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        mount:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        pan_servo:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        pan_tilt_mount:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        realsense_housing:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        right_motor:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        right_realsense:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        right_wheel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        sonar:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        stand:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        tilt_servo:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        top_panel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
       Name: RobotModel
       Robot Description: robot2/robot_description
       TF Prefix: robot2
@@ -756,10 +567,10 @@ Visualization Manager:
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 962
+  Height: 1016
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd00000004000000000000020200000368fc0200000007fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d00000368000000c900fffffffb0000000a0049006d006100670065000000025a000000cc0000000000000000fb0000000a0049006d0061006700650000000330000000ce0000000000000000000000010000010f00000368fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003d00000368000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004a00000003efc0100000002fb0000000800540069006d00650000000000000004a0000004f300fffffffb0000000800540069006d00650100000000000004500000000000000000000001970000036800000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000400000000000002020000039cfc0200000007fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003e0000039c000000ca00fffffffb0000000a0049006d006100670065000000025a000000cc0000000000000000fb0000000a0049006d0061006700650000000330000000ce0000000000000000000000010000010f00000368fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003d00000368000000a600fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004a00000003efc0100000002fb0000000800540069006d00650000000000000004a0000004e200fffffffb0000000800540069006d00650100000000000004500000000000000000000005350000039c00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
@@ -768,6 +579,6 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: false
-  Width: 927
-  X: 993
+  Width: 1853
+  X: 67
   Y: 27
