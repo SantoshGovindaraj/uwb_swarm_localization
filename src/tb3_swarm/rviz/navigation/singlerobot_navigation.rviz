@@ -4,11 +4,8 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
-        - /RobotModel1/Status1
         - /TF1/Tree1
-        - /Global Map1/Costmap1
-        - /Global Map1/Planner1
-        - /Local Map1/Polygon1
+        - /Local Map1
       Splitter Ratio: 0.5
     Tree Height: 407
   - Class: rviz/Selection
@@ -205,7 +202,7 @@ Visualization Manager:
       Radius: 0.029999999329447746
       Shaft Diameter: 0.10000000149011612
       Shaft Length: 0.10000000149011612
-      Topic: /move_base/NavfnROS/plan
+      Topic: /robot1/move_base/GlobalPlanner/plan
       Unreliable: false
       Value: true
     - Class: rviz/Group
@@ -240,7 +237,7 @@ Visualization Manager:
           Radius: 0.029999999329447746
           Shaft Diameter: 0.10000000149011612
           Shaft Length: 0.10000000149011612
-          Topic: /robot1/move_base/DWAPlannerROS/global_plan
+          Topic: /robot1/move_base/TebLocalPlannerROS/global_plan
           Unreliable: false
           Value: true
       Enabled: true
@@ -252,7 +249,7 @@ Visualization Manager:
           Color: 0; 0; 0
           Enabled: true
           Name: Polygon
-          Topic: /move_base/local_costmap/footprint
+          Topic: /robot1/move_base/local_costmap/footprint
           Unreliable: false
           Value: true
         - Alpha: 0.699999988079071
@@ -285,7 +282,7 @@ Visualization Manager:
           Radius: 0.029999999329447746
           Shaft Diameter: 0.10000000149011612
           Shaft Length: 0.10000000149011612
-          Topic: /robot1/move_base/DWAPlannerROS/local_plan
+          Topic: /robot1/move_base/TebLocalPlannerROS/local_plan
           Unreliable: false
           Value: true
       Enabled: true
