@@ -7,7 +7,7 @@
     <group ns="robot1">
       <param name="action_server_name" type="str" value="/robot1/move_base" />
       <param name="goal_text_file_path" value="$(find tb3_swarm)/config/multirobot_navigation/robot1_goals.txt" />
-      <param name="iteration_count" type="int" value="3" />
+      <param name="iteration_count" type="int" value="1" />
       <rosparam param="initial_pose">[0.0, 0.0, 0, 0, 0, 0.0, 1] </rosparam>
       <node name="set_navigation_goal" pkg="tb3_swarm" type="set_goal.py" output="screen"/>
     </group>
