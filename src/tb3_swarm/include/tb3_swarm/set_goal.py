@@ -71,7 +71,7 @@ class SetNavigationGoal:
             # Assumption is that initial pose is set after publishing first time in this duration.
             # Can be changed to more sophisticated way. e.g. /particlecloud topic has no msg until
             # the initial pose is set.
-            rospy.sleep(10)
+            rospy.sleep(3)
             rospy.loginfo("Sending first goal")
 
         self._action_client.wait_for_server()
