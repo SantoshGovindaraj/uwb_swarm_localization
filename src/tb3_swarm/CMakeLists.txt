@@ -171,6 +171,7 @@ target_link_libraries(follower_multi ${catkin_LIBRARIES})
 ## in contrast to setup.py, you can choose the destination
 catkin_install_python(PROGRAMS
   include/tb3_swarm/set_goal.py
+  scripts/move_base_seq.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
