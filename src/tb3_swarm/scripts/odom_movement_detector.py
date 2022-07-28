@@ -10,6 +10,10 @@ class MovementDetector(object):
     def __init__(self):
         """Initialize an object of the MovementDetector class."""
         # _mved_distance is for stored distance moved
+
+        # Get the Namespace
+        self.__ns = rospy.get_namespace()
+
         # create and initialize it here. Initial value is 0.0
         self._mved_distance = Float64()
         self._mved_distance.data = 0.0
@@ -19,10 +23,10 @@ class MovementDetector(object):
         self.get_init_position()
 
         # Create a publisher for publishing the distance moved into the topic '/moved_distance'
-        self.distance_moved_pub = rospy.Publisher('/robot1/moved_distance', Float64, queue_size=1)
+        self.distance_moved_pub = rospy.Publisher(self.__ns+'moved_distance', Float64, queue_size=1)
 
         # create a subscriber for getting new Odometry messages
-        rospy.Subscriber("/robot1/odom", Odometry, self.odom_callback)
+        rospy.Subscriber(self.__ns+"odom", Odometry, self.odom_callback)
 
     def get_init_position(self):
         """Get the initial position of the robot."""

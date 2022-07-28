@@ -11,7 +11,6 @@ from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from actionlib_msgs.msg import GoalStatus
 from geometry_msgs.msg import Pose, Point, Quaternion, PoseWithCovarianceStamped
 from tf.transformations import quaternion_from_euler
-from calculate_distance_traveled import CalculateDistanceTraveled
 from std_msgs.msg import Float64
 import json
 
@@ -21,6 +20,9 @@ class MoveBaseSeq():
     def __init__(self):
 
         rospy.init_node('move_base_sequence')
+        # Get the Namespaces
+        self.robot_ns = rospy.get_namespace()
+        rospy.loginfo("robot_ns ->" + self.robot_ns)
         # Reading JSON file
         with open('/home/santosh/workspaces/uwb_swarm_localization/src/tb3_swarm/config/multirobot_navigation/tasks.txt') as f:
             data = f.read()
@@ -40,9 +42,9 @@ class MoveBaseSeq():
         self.goal_cnt = 0
         self.robot1_total_distance = 0.0
         self.current_am_pose = Point()
-        self.amcl_pose_pub = rospy.Publisher('/amcl_point', Point, queue_size=1)
-        rospy.Subscriber('/robot1/amcl_pose', PoseWithCovarianceStamped, self.pose_cb)
-        rospy.Subscriber('/robot1/moved_distance', Float64, self.mvd_distance)
+        self.amcl_pose_pub = rospy.Publisher(self.robot_ns+'amcl_point', Point, queue_size=1)
+        rospy.Subscriber(self.robot_ns+'amcl_pose', PoseWithCovarianceStamped, self.pose_cb)
+        rospy.Subscriber(self.robot_ns+'moved_distance', Float64, self.mvd_distance)
         for yawangle in yaweulerangles_seq:
             #Unpacking the quaternion list and passing it as arguments to Quaternion message constructor
             quat_seq.append(Quaternion(*(quaternion_from_euler(0, 0, yawangle*math.pi/180, axes='sxyz'))))
@@ -56,7 +58,7 @@ class MoveBaseSeq():
 
         rospy.logwarn("Number of Points recieved "+ str(len(self.pose_seq)))
         #Create action client
-        self.client = actionlib.SimpleActionClient('/robot1/move_base',MoveBaseAction)
+        self.client = actionlib.SimpleActionClient('move_base',MoveBaseAction)
         rospy.loginfo("Waiting for move_base action server...")
         wait = self.client.wait_for_server(rospy.Duration(5.0))
         if not wait:
@@ -119,7 +121,6 @@ class MoveBaseSeq():
             rospy.loginfo("Goal pose "+str(self.goal_cnt)+" received a cancel request before it started executing, successfully cancelled!")
 
     def movebase_client(self):
-        cdt1 = CalculateDistanceTraveled(robot_namespace="robot1")
         goal = MoveBaseGoal()
         goal.target_pose.header.frame_id = "map"
         goal.target_pose.header.stamp = rospy.Time.now()
@@ -128,8 +129,6 @@ class MoveBaseSeq():
         # rospy.loginfo(str(self.pose_seq[self.goal_cnt]))
         # self.client.send_goal(goal, self.done_cb, self.active_cb, self.feedback_cb)
         self.client.send_goal(goal, self.done_cb, self.active_cb)
-        # self.robot1_total_distance += cdt1.getTotalDistance()
-        print("Robot1 distance" + str(self.robot1_total_distance))
         rospy.spin()
 
     def mvd_distance(self, data):
