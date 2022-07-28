@@ -10,6 +10,7 @@ from geometry_msgs.msg import Pose, Point, Quaternion
 from tf.transformations import quaternion_from_euler
 from calculate_distance_traveled import CalculateDistanceTraveled
 from std_msgs.msg import Float64
+import json
 
 
 class MoveBaseSeq():
@@ -17,9 +18,18 @@ class MoveBaseSeq():
     def __init__(self):
 
         rospy.init_node('move_base_sequence')
-        points_seq = rospy.get_param('move_base_seq/p_seq')
+        # Reading JSON file
+        with open('/home/santosh/workspaces/uwb_swarm_localization/src/tb3_swarm/scripts/text.txt') as f:
+            data = f.read()
+        js = json.loads(data)
+        # Get the task
+        _task = rospy.get_param('move_base_seq/to_do_task')
+        # points
+        self.points_seq = js[_task]
         # Only yaw angle required (no ratotions around x and y axes) in deg:
-        yaweulerangles_seq = rospy.get_param('move_base_seq/yea_seq')
+        yaweulerangles_seq = list()
+        for i in range(0, len(self.points_seq)):
+            yaweulerangles_seq.append(self.points_seq[str(i)][3])
         #List of goal quaternions:
         quat_seq = list()
         #List of goal poses:
@@ -32,7 +42,7 @@ class MoveBaseSeq():
             quat_seq.append(Quaternion(*(quaternion_from_euler(0, 0, yawangle*math.pi/180, axes='sxyz'))))
         n = 3
         # Returns a list of lists [[point1], [point2],...[pointn]]
-        points = [points_seq[i:i+n] for i in range(0, len(points_seq), n)]
+        points = [self.points_seq[str(i)][0:3] for i in range(0, len(self.points_seq))]
         for point in points:
             #Exploit n variable to cycle in quat_seq
             self.pose_seq.append(Pose(Point(*point),quat_seq[n-3]))
@@ -50,21 +60,21 @@ class MoveBaseSeq():
         self.movebase_client()
 
     def active_cb(self):
-        rospy.loginfo("Goal pose "+str(self.goal_cnt+1)+" is now being processed by the Action Server...")
+        rospy.loginfo("Goal pose "+str(self.goal_cnt+1)+" "+str(self.points_seq[str(self.goal_cnt)][4])+" is now being processed by the Action Server...")
 
-    def feedback_cb(self, feedback):
-        #To print current pose at each feedback:
-        #rospy.loginfo("Feedback for goal "+str(self.goal_cnt)+": "+str(feedback))
-        rospy.loginfo("Feedback for goal pose "+str(self.goal_cnt+1)+" received")
+    # def feedback_cb(self, feedback):
+    #     #To print current pose at each feedback:
+    #     #rospy.loginfo("Feedback for goal "+str(self.goal_cnt)+": "+str(feedback))
+    #     rospy.loginfo("Feedback for goal pose "+str(self.goal_cnt+1)+" received")
 
     def done_cb(self, status, result):
         self.goal_cnt += 1
     # Reference for terminal status values: http://docs.ros.org/diamondback/api/actionlib_msgs/html/msg/GoalStatus.html
         if status == 2:
-            rospy.loginfo("Goal pose "+str(self.goal_cnt)+" received a cancel request after it started executing, completed execution!")
+            rospy.loginfo("Goal pose "+str(self.points_seq[str(self.goal_cnt)][4])+" received a cancel request after it started executing, completed execution!")
 
         if status == 3:
-            rospy.loginfo("Goal pose "+str(self.goal_cnt)+" reached")
+            rospy.loginfo("Goal pose "+str(self.points_seq[str(self.goal_cnt-1)][4])+" reached")
             if self.goal_cnt< len(self.pose_seq):
                 cdt1 = CalculateDistanceTraveled(robot_namespace="robot1")
                 next_goal = MoveBaseGoal()
@@ -74,11 +84,12 @@ class MoveBaseSeq():
                 rospy.loginfo("Sending goal pose "+str(self.goal_cnt+1)+" to Action Server")
                 rospy.loginfo(str(self.pose_seq[self.goal_cnt]))
                 # self.robot1_total_distance += cdt1.getTotalDistance()
-                self.client.send_goal(next_goal, self.done_cb, self.active_cb, self.feedback_cb)
+                self.client.send_goal(next_goal, self.done_cb, self.active_cb)
+                # self.client.send_goal(next_goal, self.done_cb, self.active_cb, self.feedback_cb)1
 
             else:
                 rospy.loginfo("Final goal pose reached!")
-                print(" Robot1 total distance = "+ str(self.robot1_total_distance))
+                rospy.loginfo(" Robot1 total distance = "+ str(self.robot1_total_distance))
                 rospy.signal_shutdown("Final goal pose reached!")
                 return
 
@@ -103,7 +114,8 @@ class MoveBaseSeq():
         goal.target_pose.pose = self.pose_seq[self.goal_cnt]
         rospy.loginfo("Sending goal pose "+str(self.goal_cnt+1)+" to Action Server")
         rospy.loginfo(str(self.pose_seq[self.goal_cnt]))
-        self.client.send_goal(goal, self.done_cb, self.active_cb, self.feedback_cb)
+        # self.client.send_goal(goal, self.done_cb, self.active_cb, self.feedback_cb)
+        self.client.send_goal(goal, self.done_cb, self.active_cb)
         # self.robot1_total_distance += cdt1.getTotalDistance()
         print("Robot1 distance" + str(self.robot1_total_distance))
         rospy.spin()
