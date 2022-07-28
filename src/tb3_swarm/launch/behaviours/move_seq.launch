@@ -1,0 +1,16 @@
+<launch>
+
+<!-- MoveBaseSeq node launch and Points Sequence ROS Parameters Loading -->
+
+    <!--Run move_base_seqs node-->
+        <node pkg="tb3_swarm" type="move_base_square.py" name="move_base_seq" output="screen">
+        <!-- Load Sequence of Points (Cartesian Coordinates wrt "map" RF, in meters) -->
+            <rosparam param="p_seq">[3.2,0,0,3.2,3.0,0,3.2,3.0,0]</rosparam>
+        <!-- Load Sequence of Desired Yaw Angles (no rotations around x and y axes) in degrees-->
+            <rosparam param="yea_seq">[0,90,0]</rosparam>
+
+        </node>
+
+        <node pkg="tb3_swarm" type="odom_movement_detector.py" name="odom_distance" output="screen"/>
+
+</launch>
