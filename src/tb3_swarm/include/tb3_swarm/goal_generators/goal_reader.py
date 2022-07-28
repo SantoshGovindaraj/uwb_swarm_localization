@@ -1,5 +1,6 @@
 from __future__ import absolute_import
 from .goal_generator import GoalGenerator
+import time
 
 
 class GoalReader(GoalGenerator):
@@ -9,6 +10,8 @@ class GoalReader(GoalGenerator):
 
     def generate_goal(self, max_num_of_trials=1000):
         try:
+            print("Pausing")
+            time.sleep(5)
             return next(self.__generator)
         except StopIteration:
             return

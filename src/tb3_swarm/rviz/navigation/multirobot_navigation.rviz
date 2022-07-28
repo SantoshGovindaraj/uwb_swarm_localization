@@ -11,12 +11,13 @@ Panels:
         - /Local Map1/Polygon1
         - /Local Map1/Costmap1
         - /Local Map1/Planner1
+        - /Global Map2
         - /Global Map2/Costmap1
+        - /Global Map2/Costmap1/Status1
         - /Global Map2/Planner1
         - /Local Map2/Polygon1
-        - /Local Map2/Costmap1
+        - /Local Map2/Costmap1/Status1
         - /Local Map2/Planner1
-        - /robot1 trajectory1
         - /robot2 trajectory1
       Splitter Ratio: 0.5
     Tree Height: 777
@@ -39,7 +40,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: LaserScan
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -388,7 +389,7 @@ Visualization Manager:
           Radius: 0.029999999329447746
           Shaft Diameter: 0.10000000149011612
           Shaft Length: 0.10000000149011612
-          Topic: robot2/move_base/DWAPlannerROS/global_plan
+          Topic: /robot1/move_base/TebLocalPlannerROS/global_plan
           Unreliable: false
           Value: true
       Enabled: true
@@ -400,7 +401,7 @@ Visualization Manager:
           Color: 0; 0; 0
           Enabled: true
           Name: Polygon
-          Topic: robot2/move_base/local_costmap/footprint
+          Topic: /robot1/move_base/local_costmap/footprint
           Unreliable: false
           Value: true
         - Alpha: 0.699999988079071
@@ -409,7 +410,7 @@ Visualization Manager:
           Draw Behind: false
           Enabled: true
           Name: Costmap
-          Topic: robot2/move_base/local_costmap/costmap
+          Topic: /robot1/move_base/local_costmap/costmap
           Unreliable: false
           Use Timestamp: false
           Value: true
@@ -433,7 +434,7 @@ Visualization Manager:
           Radius: 0.029999999329447746
           Shaft Diameter: 0.10000000149011612
           Shaft Length: 0.10000000149011612
-          Topic: robot2/move_base/DWAPlannerROS/local_plan
+          Topic: /robot1/move_base/TebLocalPlannerROS/local_plan
           Unreliable: false
           Value: true
       Enabled: true

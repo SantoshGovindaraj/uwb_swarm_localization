@@ -39,12 +39,9 @@
     AMCL
     <include file="$(find tb3_swarm)/launch/navigation/multi_amcl.launch">
       <arg name="robot_namespace" value="$(arg second_robot)"/>
-      <arg name="initial_pose_x" value="2.05"/>
-      <arg name="initial_pose_y" value="3.55"/>
-      <arg name="initial_pose_a" value="-1.57"/>
-      <arg name="initial_pose_x" value="-0.35"/>
-      <arg name="initial_pose_y" value="0.3"/>
-      <arg name="initial_pose_a" value="-1.57"/>
+      <arg name="initial_pose_x" value="0.0"/>
+      <arg name="initial_pose_y" value="1.0"/>
+      <arg name="initial_pose_a" value="0.0"/>
     </include>
 
     move_base
