@@ -22,7 +22,7 @@ class MoveBaseSeq():
 
         rospy.init_node('move_base_sequence')
         # Reading JSON file
-        with open('/home/santosh/workspaces/uwb_swarm_localization/src/tb3_swarm/scripts/text.txt') as f:
+        with open('/home/santosh/workspaces/uwb_swarm_localization/src/tb3_swarm/config/multirobot_navigation/tasks.txt') as f:
             data = f.read()
         js = json.loads(data)
         # Get the task
