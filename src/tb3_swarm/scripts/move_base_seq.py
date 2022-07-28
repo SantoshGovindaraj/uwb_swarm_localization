@@ -2,11 +2,14 @@
 __author__ = 'santosh'
 import rospy
 import math
+import time
+import os
+import csv
 
 import actionlib
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from actionlib_msgs.msg import GoalStatus
-from geometry_msgs.msg import Pose, Point, Quaternion
+from geometry_msgs.msg import Pose, Point, Quaternion, PoseWithCovarianceStamped
 from tf.transformations import quaternion_from_euler
 from calculate_distance_traveled import CalculateDistanceTraveled
 from std_msgs.msg import Float64
@@ -36,6 +39,9 @@ class MoveBaseSeq():
         self.pose_seq = list()
         self.goal_cnt = 0
         self.robot1_total_distance = 0.0
+        self.current_am_pose = Point()
+        self.amcl_pose_pub = rospy.Publisher('/amcl_point', Point, queue_size=1)
+        rospy.Subscriber('/robot1/amcl_pose', PoseWithCovarianceStamped, self.pose_cb)
         rospy.Subscriber('/robot1/moved_distance', Float64, self.mvd_distance)
         for yawangle in yaweulerangles_seq:
             #Unpacking the quaternion list and passing it as arguments to Quaternion message constructor
@@ -47,6 +53,8 @@ class MoveBaseSeq():
             #Exploit n variable to cycle in quat_seq
             self.pose_seq.append(Pose(Point(*point),quat_seq[n-3]))
             n += 1
+
+        rospy.logwarn("Number of Points recieved "+ str(len(self.pose_seq)))
         #Create action client
         self.client = actionlib.SimpleActionClient('/robot1/move_base',MoveBaseAction)
         rospy.loginfo("Waiting for move_base action server...")
@@ -75,15 +83,19 @@ class MoveBaseSeq():
 
         if status == 3:
             rospy.loginfo("Goal pose "+str(self.points_seq[str(self.goal_cnt-1)][4])+" reached")
+            self.amcl_pose_pub.publish(self.current_am_pose)
+            with open("amcl_poses0.csv", "wb") as csv_file:
+                writer = csv.writer(csv_file, delimiter=',')
+                writer.writerow((str(self.current_am_pose.x), str(self.current_am_pose.y)))
+
             if self.goal_cnt< len(self.pose_seq):
-                cdt1 = CalculateDistanceTraveled(robot_namespace="robot1")
                 next_goal = MoveBaseGoal()
                 next_goal.target_pose.header.frame_id = "map"
                 next_goal.target_pose.header.stamp = rospy.Time.now()
                 next_goal.target_pose.pose = self.pose_seq[self.goal_cnt]
                 rospy.loginfo("Sending goal pose "+str(self.goal_cnt+1)+" to Action Server")
-                rospy.loginfo(str(self.pose_seq[self.goal_cnt]))
-                # self.robot1_total_distance += cdt1.getTotalDistance()
+                # rospy.loginfo(str(self.pose_seq[self.goal_cnt]))
+                time.sleep(1)
                 self.client.send_goal(next_goal, self.done_cb, self.active_cb)
                 # self.client.send_goal(next_goal, self.done_cb, self.active_cb, self.feedback_cb)1
 
@@ -113,7 +125,7 @@ class MoveBaseSeq():
         goal.target_pose.header.stamp = rospy.Time.now()
         goal.target_pose.pose = self.pose_seq[self.goal_cnt]
         rospy.loginfo("Sending goal pose "+str(self.goal_cnt+1)+" to Action Server")
-        rospy.loginfo(str(self.pose_seq[self.goal_cnt]))
+        # rospy.loginfo(str(self.pose_seq[self.goal_cnt]))
         # self.client.send_goal(goal, self.done_cb, self.active_cb, self.feedback_cb)
         self.client.send_goal(goal, self.done_cb, self.active_cb)
         # self.robot1_total_distance += cdt1.getTotalDistance()
@@ -122,6 +134,9 @@ class MoveBaseSeq():
 
     def mvd_distance(self, data):
         self.robot1_total_distance = data
+
+    def pose_cb(self, data):
+        self.current_am_pose = data.pose.pose.position
 
 if __name__ == '__main__':
     try:
