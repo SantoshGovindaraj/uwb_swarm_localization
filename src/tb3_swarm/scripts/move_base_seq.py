@@ -85,19 +85,25 @@ class MoveBaseSeq():
 
         if status == 3:
             rospy.loginfo("Goal pose "+str(self.points_seq[str(self.goal_cnt-1)][4])+" reached")
+            rospy.loginfo("")
             self.amcl_pose_pub.publish(self.current_am_pose)
-            with open("amcl_poses0.csv", "wb") as csv_file:
-                writer = csv.writer(csv_file, delimiter=',')
-                writer.writerow((str(self.current_am_pose.x), str(self.current_am_pose.y)))
+            if self.robot_ns is "/robot1/":
+                with open("robot1_amcl_poses0.csv", "wb") as csv_file:
+                    writer = csv.writer(csv_file, delimiter=',')
+                    writer.writerow((str(self.current_am_pose.x), str(self.current_am_pose.y)))
+            else:
+                with open("robot2_amcl_poses0.csv", "wb") as csv_file:
+                    writer = csv.writer(csv_file, delimiter=',')
+                    writer.writerow((str(self.current_am_pose.x), str(self.current_am_pose.y)))
 
             if self.goal_cnt< len(self.pose_seq):
                 next_goal = MoveBaseGoal()
                 next_goal.target_pose.header.frame_id = "map"
                 next_goal.target_pose.header.stamp = rospy.Time.now()
                 next_goal.target_pose.pose = self.pose_seq[self.goal_cnt]
+                time.sleep(5)
                 rospy.loginfo("Sending goal pose "+str(self.goal_cnt+1)+" to Action Server")
                 # rospy.loginfo(str(self.pose_seq[self.goal_cnt]))
-                time.sleep(1)
                 self.client.send_goal(next_goal, self.done_cb, self.active_cb)
                 # self.client.send_goal(next_goal, self.done_cb, self.active_cb, self.feedback_cb)1
 

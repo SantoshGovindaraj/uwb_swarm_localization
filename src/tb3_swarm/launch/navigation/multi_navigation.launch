@@ -34,9 +34,9 @@
 
   </group>
 
-  <!-- <group ns="$(arg second_robot)">
+  <group ns="$(arg second_robot)">
 
-    AMCL
+    <!-- AMCL -->
     <include file="$(find tb3_swarm)/launch/navigation/multi_amcl.launch">
       <arg name="robot_namespace" value="$(arg second_robot)"/>
       <arg name="initial_pose_x" value="0.0"/>
@@ -44,13 +44,13 @@
       <arg name="initial_pose_a" value="0.0"/>
     </include>
 
-    move_base
+    <!-- move_base -->
     <include file="$(find tb3_swarm)/launch/navigation/multi_move_base.launch">
       <arg name="robot_namespace" value="$(arg second_robot)"/>
       <arg name="move_forward_only" value="$(arg move_forward_only)"/>
     </include>
 
-  </group> -->
+  </group>
 
   <group if="$(arg open_rviz)">
     <node pkg="rviz" type="rviz" name="rviz" required="true"
