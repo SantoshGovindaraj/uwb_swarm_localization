@@ -4,9 +4,9 @@
 
   <!-- Robot1 -->
   <group ns="robot1">
-    <!--Run move_base_seqs node-->
+    <!-- Run move_base_seqs node -->
     <node pkg="tb3_swarm" type="move_base_seq.py" name="move_base_seq" output="screen">
-        <param name="to_do_task" value="Robot1 Split"/>
+        <param name="to_do_task" value="Robot1 Hangar"/>
     </node>
     <!-- Distance Calculator -->
     <node pkg="tb3_swarm" type="odom_movement_detector.py" name="odom_distance" output="screen"/>
@@ -15,7 +15,7 @@
   <group ns="robot2">
     <!-- Run move_base_seqs node -->
     <node pkg="tb3_swarm" type="move_base_seq.py" name="move_base_seq" output="screen">
-        <param name="to_do_task" value="Robot2 Split"/>
+        <param name="to_do_task" value="Robot2 Hangar"/>
     </node>
     <!-- Distance Calculator -->
     <node pkg="tb3_swarm" type="odom_movement_detector.py" name="odom_distance" output="screen"/>
