@@ -28,5 +28,28 @@
    "2": [2.25,0.95,0,140,150,"Tail"],
    "1": [1.75,0.95,0,140,"Left Flaps"],
    "0": [1.20,0.95,0,45,"Left Wing"],
-   "4": [-0.0,1,0,0,"HOME Robot2"]}
+   "4": [-0.0,1,0,0,"HOME Robot2"]},
+
+ "Robot1 Hangar":
+    {"0": [3,0,0,0,"Left Engine Nozzle"],
+     "1": [3,1.5,0,0,"Left Engine Turbine"],
+     "2": [3,4.5,0,90,"Left Cockpit"],
+     "3": [0,1,0,0,"HOME Robot1"]},
+ "Robot2 Hangar":
+    {"0": [3,1.5,0,0,"Left Engine Side View"],
+     "1": [3,4.5,0,-45,"Left Engine Front View"],
+     "2": [5,7.5,0,60,"Front Tyre Back View"],
+     "3": [0,1.5,0,0,"HOME Robot2"]},
+     
+ "one_after_other":
+    {"0": [1,1.47,0,30,"Left Cockpit"],
+     "1": [1,2.2,0,-42,"Front"],
+     "2": [1.63,2.4,0,-125,"Right Cockpit"],
+     "3": [1.40,2.1,0,-42,"Right Engine"],
+     "4": [2.17,2.0,0,-126,"Right Wing"],
+     "5": [2.15,1.42,0,150,"Right Flaps"],
+     "6": [2.25,0.95,0,140,150,"Tail"],
+     "7": [1.75,0.95,0,140,"Left Flaps"],
+     "8": [1.20,0.95,0,45,"Left Wing"],
+     "9": [-0.10,0,0,0,"HOME"]}
   }
