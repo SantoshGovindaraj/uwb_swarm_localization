@@ -1,0 +1,5 @@
+<launch>
+  <node pkg="tb3_swarm" name="one_after_other" type="sequence.py" output="screen">
+    <param name="to_do_task"  value="one_after_other"/>
+  </node>
+</launch>
